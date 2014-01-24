@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- comment ignored -->
+<document>
+  <nodes>
+    <a>This is a</a>
+    <b rock='Rock&apos;n Roll'>This is Bob</b>
+    <c/>
+  </nodes>
+  <p>Dear <b>Pedro</b>, how are you ?</p>
+</document>

@@ -1,0 +1,53 @@
+{% 
+local lfs = require 'lfs'
+local lub = require 'lub'
+%}
+package = "{{lib.type}}"
+version = "{{lib.VERSION}}-1"
+source = {
+  url = "http://lubyk.org/archive/{{lib.type}}-REL-{{lib.VERSION}}.tar.gz",
+  dir = '{{lib.type}}-REL-{{lib.VERSION}}',
+}
+description = {
+  summary = "Very fast xml parser based on RapidXML",
+  detailed = [[
+    This module is part of the Lubyk project.
+
+    Main features are:
+     - Fast and easy to use
+     - Complete documentation
+     - Based on proven code (RapidXML)
+     - Full test coverage
+
+     Read the documentation at http://doc.lubyk.org/xml.html.
+  ]],
+  homepage = "http://doc.lubyk.org/{{lib.type}}.html",
+  license = "MIT"
+}
+dependencies = {
+  "lua >= 5.1, < 5.3",
+  "lub >= 1.0.3, < 1.1",
+}
+build = {
+  type = 'builtin',
+  modules = {
+    -- Plain Lua files
+    {{string.format("[%-17s] = '%s/%s.lua'", "'"..lib.type.."'", lib.type, 'init')}},
+{% for file in lfs.dir(lib.type) do %}
+{% if file ~= 'init.lua' and file:match('.lua$') then file = file:sub(1, -5) %}
+    {{string.format("[%-17s] = '%s/%s.lua'", "'"..lib.type..'.'..file.."'", lib.type, file)}},
+{% end %}
+{% end %}
+    -- C++ modules
+    {{string.format("[%-17s] = ", "'"..lib.type..".core'")}}{
+      sources = {
+{% for path in lub.Dir('src'):glob '%.cpp' do %}
+        '{{path}}',
+{% end %}
+      },
+      incdirs = {'include', 'src/bind', 'src/vendor'},
+    },
+  },
+}
+
+

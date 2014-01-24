@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.3.1">
+  <compounddef id="classxml_1_1_parser" kind="class" prot="public">
+    <compoundname>xml::Parser</compoundname>
+    <includes refid="_parser_8h" local="no">Parser.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classxml_1_1_parser_1af46345a58560f7eb055fc74d75312057" prot="public" static="no">
+        <name>Type</name>
+        <enumvalue id="classxml_1_1_parser_1af46345a58560f7eb055fc74d75312057a0153cdebb489e252aac14a903f150d80" prot="public">
+          <name>Default</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classxml_1_1_parser_1af46345a58560f7eb055fc74d75312057a23b10825afe8f81b06f3fc8a4673f3fd" prot="public">
+          <name>NonDestructive</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classxml_1_1_parser_1af46345a58560f7eb055fc74d75312057af01baa492f21ddc70a7df0e3a9734acf" prot="public">
+          <name>Fastest</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classxml_1_1_parser_1af46345a58560f7eb055fc74d75312057a1940cf0a6cd9aa13e7f00a0386d90afc" prot="public">
+          <name>Full</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/gaspard/git/lubyk/modules/xml/include/xml/Parser.h" line="41" bodyfile="/Users/gaspard/git/lubyk/modules/xml/include/xml/Parser.h" bodystart="41" bodyend="46"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classxml_1_1_parser_1a54c4817ecf8ce69e27e5c2e947e49bcc" prot="private" static="no" mutable="no">
+        <type><ref refid="classxml_1_1_parser_1af46345a58560f7eb055fc74d75312057" kindref="member">Type</ref></type>
+        <definition>Type xml::Parser::type_</definition>
+        <argsstring></argsstring>
+        <name>type_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/gaspard/git/lubyk/modules/xml/include/xml/Parser.h" line="58" bodyfile="/Users/gaspard/git/lubyk/modules/xml/include/xml/Parser.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxml_1_1_parser_1aab2d32e52ac54a4fb58209da4711ec07" prot="private" static="no" mutable="no">
+        <type>Implementation *</type>
+        <definition>Implementation* xml::Parser::impl_</definition>
+        <argsstring></argsstring>
+        <name>impl_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/gaspard/git/lubyk/modules/xml/include/xml/Parser.h" line="61" bodyfile="/Users/gaspard/git/lubyk/modules/xml/include/xml/Parser.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classxml_1_1_parser_1a5ccb40e9381305453328b2bad6adee58" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xml::Parser::Parser</definition>
+        <argsstring>(Type type=Default)</argsstring>
+        <name>Parser</name>
+        <param>
+          <type><ref refid="classxml_1_1_parser_1af46345a58560f7eb055fc74d75312057" kindref="member">Type</ref></type>
+          <declname>type</declname>
+          <defval><ref refid="classxml_1_1_parser_1af46345a58560f7eb055fc74d75312057a0153cdebb489e252aac14a903f150d80" kindref="member">Default</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/gaspard/git/lubyk/modules/xml/include/xml/Parser.h" line="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classxml_1_1_parser_1a65aa84e361e974cab59f590f56adf367" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xml::Parser::~Parser</definition>
+        <argsstring>()</argsstring>
+        <name>~Parser</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/gaspard/git/lubyk/modules/xml/include/xml/Parser.h" line="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classxml_1_1_parser_1a58da281168ff7a19340e06064413c4c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LuaStackSize</type>
+        <definition>LuaStackSize xml::Parser::parse</definition>
+        <argsstring>(lua_State *L)</argsstring>
+        <name>parse</name>
+        <param>
+          <type>lua_State *</type>
+          <declname>L</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/gaspard/git/lubyk/modules/xml/include/xml/Parser.h" line="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classxml_1_1_parser_1a3f43b5bf443910b13641d74ed2389e22" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>LuaStackSize</type>
+        <definition>LuaStackSize xml::Parser::dump</definition>
+        <argsstring>(lua_State *L)</argsstring>
+        <name>dump</name>
+        <param>
+          <type>lua_State *</type>
+          <declname>L</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/Users/gaspard/git/lubyk/modules/xml/include/xml/Parser.h" line="56"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Simple xml parser (singleton). </para>    </detaileddescription>
+    <location file="/Users/gaspard/git/lubyk/modules/xml/include/xml/Parser.h" line="39" bodyfile="/Users/gaspard/git/lubyk/modules/xml/include/xml/Parser.h" bodystart="39" bodyend="63"/>
+    <listofallmembers>
+      <member refid="classxml_1_1_parser_1af46345a58560f7eb055fc74d75312057a0153cdebb489e252aac14a903f150d80" prot="public" virt="non-virtual"><scope>xml::Parser</scope><name>Default</name></member>
+      <member refid="classxml_1_1_parser_1a3f43b5bf443910b13641d74ed2389e22" prot="public" virt="non-virtual"><scope>xml::Parser</scope><name>dump</name></member>
+      <member refid="classxml_1_1_parser_1af46345a58560f7eb055fc74d75312057af01baa492f21ddc70a7df0e3a9734acf" prot="public" virt="non-virtual"><scope>xml::Parser</scope><name>Fastest</name></member>
+      <member refid="classxml_1_1_parser_1af46345a58560f7eb055fc74d75312057a1940cf0a6cd9aa13e7f00a0386d90afc" prot="public" virt="non-virtual"><scope>xml::Parser</scope><name>Full</name></member>
+      <member refid="classxml_1_1_parser_1aab2d32e52ac54a4fb58209da4711ec07" prot="private" virt="non-virtual"><scope>xml::Parser</scope><name>impl_</name></member>
+      <member refid="classxml_1_1_parser_1af46345a58560f7eb055fc74d75312057a23b10825afe8f81b06f3fc8a4673f3fd" prot="public" virt="non-virtual"><scope>xml::Parser</scope><name>NonDestructive</name></member>
+      <member refid="classxml_1_1_parser_1a58da281168ff7a19340e06064413c4c2" prot="public" virt="non-virtual"><scope>xml::Parser</scope><name>parse</name></member>
+      <member refid="classxml_1_1_parser_1a5ccb40e9381305453328b2bad6adee58" prot="public" virt="non-virtual"><scope>xml::Parser</scope><name>Parser</name></member>
+      <member refid="classxml_1_1_parser_1af46345a58560f7eb055fc74d75312057" prot="public" virt="non-virtual"><scope>xml::Parser</scope><name>Type</name></member>
+      <member refid="classxml_1_1_parser_1a54c4817ecf8ce69e27e5c2e947e49bcc" prot="private" virt="non-virtual"><scope>xml::Parser</scope><name>type_</name></member>
+      <member refid="classxml_1_1_parser_1a65aa84e361e974cab59f590f56adf367" prot="public" virt="non-virtual"><scope>xml::Parser</scope><name>~Parser</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,16 @@
+--- This file is part of Lubyk project
+
+name = "{{lib.type}}"
+version = "{{lib.VERSION}}"
+
+desc = "Very fast xml parser based on RapidXML"
+author = "Gaspard Bucher"
+license = "MIT"
+url = "http://doc.lubyk.org/{{lib.type}}.html"
+maintainer = "Gaspard Bucher"
+
+depends = {
+  "lua >= 5.1, < 5.3",
+  "lub >= 1.0.3, < 1.1",
+}
+
