@@ -1,18 +1,21 @@
 {% local lub = require 'lub' %}
-project ( {{lib.type}} NONE )
+project ( {{lib.type}} CXX )
 
 cmake_minimum_required ( VERSION 2.8 )
 
 include ( cmake/dist.cmake )
 include ( lua )
 
+# Install lua files
 install (
   DIRECTORY {{lib.type}}/
   DESTINATION ${INSTALL_LMOD}/{{lib.type}}
   COMPONENT Runtime
 )
 
-install_data ( README.md LICENSE )
+# This is not good as it installs in /usr/local/share/xml which might
+# be used by some non-lua xml library...
+# install_data ( readme.md LICENSE )
 
 # install_example ( examples/ )
 

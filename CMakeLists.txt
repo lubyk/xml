@@ -1,17 +1,20 @@
-project ( xml NONE )
+project ( xml CXX )
 
 cmake_minimum_required ( VERSION 2.8 )
 
 include ( cmake/dist.cmake )
 include ( lua )
 
+# Install lua files
 install (
   DIRECTORY xml/
   DESTINATION ${INSTALL_LMOD}/xml
   COMPONENT Runtime
 )
 
-install_data ( README.md LICENSE )
+# This is not good as it installs in /usr/local/share/xml which might
+# be used by some non-lua xml library...
+# install_data ( readme.md LICENSE )
 
 # install_example ( examples/ )
 

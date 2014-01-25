@@ -25,7 +25,7 @@ static const struct luaL_Reg xml_functions[] = {
 extern "C" int luaopen_xml_core(lua_State *L) {
   lua_newtable(L);
   // <lib>
-  luaL_register(L, NULL, xml_functions);
+  dub::fregister(L, xml_functions);
   // <lib>
 
   luaopen_xml_Parser(L);

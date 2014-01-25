@@ -1,7 +1,7 @@
 package = "xml"
 version = "1.0.0-1"
 source = {
-  url = "http://lubyk.org/archive/xml-REL-1.0.0.tar.gz",
+  url = 'https://github.com/lubyk/xml/archive/REL-1.0.0.tar.gz',
   dir = 'xml-REL-1.0.0',
 }
 description = {

@@ -139,7 +139,7 @@ local function doDump(data, indent, output, last, depth, max_depth)
         last = 's'
       end
     end
-    insert(output, (last == 'n' and indent or '')..'</'..data.xml..'>')
+    insert(output, (last == 'n' and indent or '')..'</'..(data.xml or 'table')..'>')
     last = 'n'
   else
     -- no children

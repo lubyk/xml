@@ -108,7 +108,7 @@ extern "C" int luaopen_xml_Parser(lua_State *L)
   dub::register_const(L, Parser_const);
 
   // register member methods
-  luaL_register(L, NULL, Parser_member_methods);
+  dub::fregister(L, Parser_member_methods);
   // setup meta-table
   dub::setup(L, "xml", "Parser");
   // <mt>

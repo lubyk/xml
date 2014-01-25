@@ -1,3 +1,4 @@
 == 1.0.0
 
   * Initial release.
+  * When 'xml' tag name is missing, use 'table' instead of error.

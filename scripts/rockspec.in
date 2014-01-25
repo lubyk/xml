@@ -5,7 +5,7 @@ local lub = require 'lub'
 package = "{{lib.type}}"
 version = "{{lib.VERSION}}-1"
 source = {
-  url = "http://lubyk.org/archive/{{lib.type}}-REL-{{lib.VERSION}}.tar.gz",
+  url = 'https://github.com/lubyk/{{lib.type}}/archive/REL-{{lib.VERSION}}.tar.gz',
   dir = '{{lib.type}}-REL-{{lib.VERSION}}',
 }
 description = {
