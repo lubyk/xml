@@ -1,8 +1,10 @@
 --[[------------------------------------------------------
-  # Very fast xml parser for Lua
+  # Very fast xml parser for Lua <a href="https://travis-ci.org/lubyk/xml"><img src="https://travis-ci.org/lubyk/xml.png" alt="Build Status"></a> 
 
   This parser uses [RapidXML](http://rapidxml.sourceforge.net/) to parse XML
   content.
+
+  <html><a href="https://github.com/lubyk/xml"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a></html>
 
   This module is part of the [lubyk](http://lubyk.org) project. *MIT license*
   &copy; Gaspard Bucher 2014.
