@@ -25,8 +25,9 @@ description = {
   license = "MIT"
 }
 dependencies = {
-  "lua >= 5.1, < 5.3",
-  "lub >= 1.0.3, < 1.1",
+{% for _, v in ipairs(lib.DEPENDS) do %}
+  "{{v}}",
+{% end %}
 }
 build = {
   type = 'builtin',

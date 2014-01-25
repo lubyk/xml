@@ -34,6 +34,13 @@ local parser  = lib.Parser()
 -- Current version respecting [semantic versioning](http://semver.org).
 lib.VERSION = '1.0.0'
 
+-- Library dependencies
+lib.DEPENDS = { -- doc
+  -- Compatible with Lua 5.1, 5.2 and LuaJIT
+  'lua >= 5.1, < 5.3',
+  -- Uses [Lubyk base library](http://doc.lubyk.org/lub.html)
+  'lub >= 1.0.3, < 1.1',
+}
 
 --[[
 
@@ -100,7 +107,7 @@ local function escape(v)
 end
 
 local function tagWithAttributes(data)
-  local res = data.xml
+  local res = data.xml or 'table'
   for k,v in pairs(data) do
     if k ~= 'xml' and type(k) ~= 'number' then
       res = res .. ' ' .. k .. "='" .. escape(v) .. "'"

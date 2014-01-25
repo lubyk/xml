@@ -1,3 +1,4 @@
+{% local lub = require 'lub' %}
 project ( {{lib.type}} NONE )
 
 cmake_minimum_required ( VERSION 2.8 )
@@ -15,4 +16,17 @@ install_data ( README.md LICENSE )
 
 # install_example ( examples/ )
 
+# Create and install a Lua module:
+include_directories(include src/bind src/vendor)
 
+install_lua_module ( {{lib.type}}.core
+{% for path in lub.Dir('src'):glob '%.cpp' do %}
+  {{path}}
+{% end %}
+)
+
+# Schedules a test, this is optional
+# add_lua_test ( test.lua )
+
+# Install documentation
+# install_doc ( re.html lpeg.html lpeg-128.gif )
