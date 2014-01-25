@@ -39,6 +39,7 @@ build = {
         'src/Parser.cpp',
       },
       incdirs = {'include', 'src/bind', 'src/vendor'},
+      libraries = {'stdc++'},
     },
   },
 }

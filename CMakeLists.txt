@@ -26,7 +26,7 @@ install_lua_module ( xml.core
 )
 
 # Schedules a test, this is optional
-# add_lua_test ( test.lua )
+# add_lua_test ( test/all.lua )
 
 # Install documentation
-install_doc ( doc/ )
+# install_doc ( doc/ )

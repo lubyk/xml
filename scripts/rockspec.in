@@ -47,6 +47,7 @@ build = {
 {% end %}
       },
       incdirs = {'include', 'src/bind', 'src/vendor'},
+      libraries = {'stdc++'},
     },
   },
 }

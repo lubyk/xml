@@ -26,7 +26,7 @@ install_lua_module ( {{lib.type}}.core
 )
 
 # Schedules a test, this is optional
-# add_lua_test ( test.lua )
+# add_lua_test ( test/all.lua )
 
 # Install documentation
-# install_doc ( re.html lpeg.html lpeg-128.gif )
+# install_doc ( doc/ )
