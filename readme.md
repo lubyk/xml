@@ -8,9 +8,9 @@ Very fast and simple XML parser for Lua based on RapidXML 1.13.
 install
 -------
 
-    luadist install xml
+    luarocks install xml
 
 or
 
-    luarocks install xml
+    luadist install xml
 

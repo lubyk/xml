@@ -57,8 +57,8 @@ macro ( install_lua_executable _name _source )
     )
     # Install with run permissions
     install ( PROGRAMS ${_exe} DESTINATION ${INSTALL_BIN} COMPONENT Runtime)
-	# Also install source as optional resurce
-	install ( FILES ${_source} DESTINATION ${INSTALL_FOO} COMPONENT Other )
+        # Also install source as optional resurce
+        install ( FILES ${_source} DESTINATION ${INSTALL_FOO} COMPONENT Other )
   else()
     # Install into bin as is but without the lua suffix, we assume the executable uses UNIX shebang/hash-bang magic
     install ( PROGRAMS ${_source} DESTINATION ${INSTALL_BIN}
@@ -125,11 +125,11 @@ macro ( _lua_module_helper is_install _name )
       list ( APPEND _lua_modules "${_thisname}"
              "${CMAKE_CURRENT_BINARY_DIR}/\${CMAKE_CFG_INTDIR}/${_module}" )
     endforeach ()
-	
+        
     # Static module (not linking to lua)
     if ( LUA_STATIC_MODULE )
-    	add_library( ${_target} STATIC ${_MODULE_SRC})
-    	target_link_libraries ( ${_target} ${_MODULE_LINK} )
+            add_library( ${_target} STATIC ${_MODULE_SRC})
+            target_link_libraries ( ${_target} ${_MODULE_LINK} )
     else ()
     # Dynamic module
       add_library( ${_target} MODULE ${_MODULE_SRC})
