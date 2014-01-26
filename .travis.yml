@@ -40,7 +40,7 @@ install:
 
 # Run tests
 script:
-  - $LUA test/all.lua
+  - $LUA -v && $LUA test/all.lua
 
 notifications:
   recipients:
