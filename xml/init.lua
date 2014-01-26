@@ -15,13 +15,12 @@
 
     $ luarocks install xml
   
-  With [luadist](http://luadist.org):
+  ## Usage example
 
-    $ luadist install xml
-  
-  ## Dependencies
- 
-  + lub: lubyk base module
+    local data = xml.parse(some_xml)
+
+    local xml_string = xml.dump(some_table)
+
 --]]-----------------------------------------------------
 local lub     = require 'lub'
 local lib     = lub.Autoload 'xml'

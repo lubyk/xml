@@ -9,8 +9,3 @@ install
 -------
 
     luarocks install xml
-
-or
-
-    luadist install xml
-

@@ -22,16 +22,18 @@ local lib  = core.Parser
 -- Depending on the type, the parser behavior is different. The default type is
 -- Default.
 
--- Default parser type
+-- Default parser type. Translates xml entities (needs to make an internal
+-- copy of the lua string).
 -- lib.Default
 
--- Type of blah
+-- Faster then default, does not translate xml entities. Parses data nodes.
 -- lib.NonDestructive
 
--- xxx
+-- Like xml.NonDestructive but does not parse data nodes.
 -- lib.Fastest
 
--- Create a new parser. Type flag is optional.
+-- Create a new parser. `type` flag is optional. If you are using the default
+-- parser, you can simply use [xml.parse](xml.html#parse).
 -- Usage example:
 --
 --   local xml = require 'xml'
