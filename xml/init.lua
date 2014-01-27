@@ -103,13 +103,17 @@ function lib.load(path)
 end
 
 local function escape(v)
-  return v:gsub('&','&amp;'):gsub('>','&gt;'):gsub('<','&lt;'):gsub("'",'&apos;')
+  if type(v) == 'boolean' then
+    return v and 'true' or 'false'
+  else
+    return v:gsub('&','&amp;'):gsub('>','&gt;'):gsub('<','&lt;'):gsub("'",'&apos;')
+  end
 end
 
 local function tagWithAttributes(data)
   local res = data.xml or 'table'
   for k,v in pairs(data) do
-    if k ~= 'xml' and type(k) ~= 'number' then
+    if k ~= 'xml' and type(k) == 'string' then
       res = res .. ' ' .. k .. "='" .. escape(v) .. "'"
     end
   end
