@@ -2,3 +2,4 @@
 
   * Initial release.
   * When 'xml' tag name is missing, use 'table' as tag name.
+  * Added option to trim whitespace.

@@ -26,6 +26,9 @@ local lib  = core.Parser
 -- copy of the lua string).
 -- lib.Default
 
+-- Same as default but trims leading and trailing whitespace.
+-- lib.TrimWhitespace
+
 -- Faster then default, does not translate xml entities. Parses data nodes.
 -- lib.NonDestructive
 

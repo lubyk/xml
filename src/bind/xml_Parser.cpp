@@ -12,7 +12,7 @@
 using namespace xml;
 
 /** xml::Parser::Parser(Type type=Default)
- * include/xml/Parser.h:47
+ * include/xml/Parser.h:48
  */
 static int Parser_Parser(lua_State *L) {
   try {
@@ -36,7 +36,7 @@ static int Parser_Parser(lua_State *L) {
 }
 
 /** xml::Parser::~Parser()
- * include/xml/Parser.h:48
+ * include/xml/Parser.h:49
  */
 static int Parser__Parser(lua_State *L) {
   try {
@@ -56,7 +56,7 @@ static int Parser__Parser(lua_State *L) {
 }
 
 /** LuaStackSize xml::Parser::parse(lua_State *L)
- * include/xml/Parser.h:52
+ * include/xml/Parser.h:53
  */
 static int Parser_parse(lua_State *L) {
   try {
@@ -94,6 +94,7 @@ static const struct luaL_Reg Parser_member_methods[] = {
 // --=============================================== CONSTANTS
 static const struct dub::const_Reg Parser_const[] = {
   { "Default"      , Parser::Default      },
+  { "TrimWhitespace", Parser::TrimWhitespace },
   { "NonDestructive", Parser::NonDestructive },
   { "Fastest"      , Parser::Fastest      },
   { NULL, 0},

@@ -90,6 +90,15 @@ LuaStackSize xml::Parser::parse(lua_State *L) {
       doc.parse<rapidxml::parse_non_destructive>(const_cast<char *>(xml_str));
       parseDom(L, doc.first_node());
       return 1;
+    case TrimWhitespace: {
+      // Parsing is destructive: make an exception safe copy.
+      String text(xml_str, len);
+      if (!text.text_) return 0;        
+      doc.parse<rapidxml::parse_trim_whitespace>(text.text_);
+      parseDom(L, doc.first_node());
+      // <tbl>
+      return 1;
+    }
     case Default: // continue
     default: {
       // Parsing is destructive: make an exception safe copy.

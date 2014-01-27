@@ -39,7 +39,8 @@ namespace xml {
 class Parser {
 public:
   enum Type {
-    Default,             
+    Default = 0,             
+    TrimWhitespace,
     NonDestructive,
     Fastest,
   };
