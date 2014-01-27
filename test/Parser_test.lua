@@ -62,6 +62,13 @@ function should.parse()
   assertValueEqual(TEST_RES, p:parse(TEST_XML))
 end
 
+function should.containConst()
+  assertEqual(0, xml.Parser.Default)
+  assertEqual(1, xml.Parser.TrimWhitespace)
+  assertEqual(2, xml.Parser.NonDestructive)
+  assertEqual(3, xml.Parser.Fastest)
+end
+
 
 should:test()
 
