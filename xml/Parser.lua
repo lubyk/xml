@@ -15,6 +15,7 @@
 
 --]]------------------------------------------------------
 local core = require 'xml.core'
+local lub  = require 'lub'
 local lib  = core.Parser
 
 -- ## Parser types
@@ -49,5 +50,14 @@ local lib  = core.Parser
 --   local data = parser:parse(some_xml_string)
 --   --> lua table
 -- function lib:parse(str)
+
+-- Parse xml from file `path` and return a Lua table. See [lua/xml](xml.html)
+-- for the format of the returned table. Usage:
+--
+--   local data = parser:load(path_to_file)
+--   --> lua table
+function lib:load(path)
+  return self:parse(lub.content(path))
+end
 
 return lib
