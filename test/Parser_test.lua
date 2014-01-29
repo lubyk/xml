@@ -51,15 +51,15 @@ function should.renderToString()
   assertMatch('xml.Parser: 0x%d', tostring(p))
 end
 
-function should.load()
+function should.loadpath()
   local p = xml.Parser()
-  local data = p:load(lub.path('|fixtures/foo.xml'))
+  local data = p:loadpath(lub.path('|fixtures/foo.xml'))
   assertValueEqual(TEST_RES, data)
 end
 
-function should.parse()
+function should.load()
   local p = xml.Parser()
-  assertValueEqual(TEST_RES, p:parse(TEST_XML))
+  assertValueEqual(TEST_RES, p:load(TEST_XML))
 end
 
 function should.containConst()

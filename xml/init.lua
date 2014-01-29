@@ -17,7 +17,7 @@
   
   ## Usage example
 
-    local data = xml.parse(some_xml)
+    local data = xml.load(some_xml)
 
     local xml_string = xml.dump(some_table)
 
@@ -92,14 +92,14 @@ lib.DEPENDS = { -- doc
 
 -- Parse a `string` containing xml content and return a table. Uses
 -- xml.Parser with the xml.Parser.Default type.
-function lib.parse(string)
-  return parser:parse(string)
+function lib.load(string)
+  return parser:load(string)
 end
 
 -- Parse the XML content of the file at `path` and return a lua table. Uses
 -- xml.Parser with the xml.Parser.Default type.
-function lib.load(path)
-  return parser:parse(lub.content(path))
+function lib.loadpath(path)
+  return parser:load(lub.content(path))
 end
 
 local function escape(v)
@@ -178,7 +178,7 @@ end
 --
 -- Example:
 --
---   local data = xml.parse [[
+--   local data = xml.load [[
 --    <foo:document xmlns:foo='bar'>
 --      <foo:name>Blah</foo:name>
 --    </foo:document>

@@ -79,7 +79,7 @@ struct String {
 };
 
 // Receive an xml string and return a Lua table.
-LuaStackSize xml::Parser::parse(lua_State *L) {
+LuaStackSize xml::Parser::load(lua_State *L) {
   size_t len;
   const char *xml_str = dub::checklstring(L, 2, &len);
   ++len; // for \0 termination

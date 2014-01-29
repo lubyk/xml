@@ -39,7 +39,7 @@ function should.autoLoad()
 end
 
 function should.decodeXml()
-  local data = xml.parse(TEST_XML)
+  local data = xml.load(TEST_XML)
   assertValueEqual(TEST_RES, data)
 
   assertEqual('document', data.xml)
@@ -50,7 +50,7 @@ function should.decodeXml()
 end
 
 function should.removeNamespace()
-  local data = xml.parse [[
+  local data = xml.load [[
 <?xml version="1.0" encoding="utf-8"?>
 <D:propfind xmlns:D="DAV:">
   <D:prop>
@@ -75,14 +75,8 @@ function should.dump()
 end
 
 function should.load()
-  local data = xml.load(lub.path('|fixtures/foo.xml'))
+  local data = xml.loadpath(lub.path('|fixtures/foo.xml'))
   assertValueEqual(TEST_RES, data)
-end
-
-function should.load()
-  assertPass(function()
-    local data = xml.load(lub.path('|fixtures/doxy.xml'))
-  end)
 end
 
 function should.raiseErrorOnRecursion()
@@ -109,7 +103,7 @@ function should.find()
 end
 
 function should.parserLarge()
-  local data = xml.load(lub.path '|fixtures/large.xml')
+  local data = xml.loadpath(lub.path '|fixtures/large.xml')
   local t = {}
   lub.search(data, function(node)
     if node.xml == 'MedlineCitation' and node.Status == 'In-Process' then

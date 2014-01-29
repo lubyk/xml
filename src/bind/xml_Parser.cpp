@@ -55,17 +55,17 @@ static int Parser__Parser(lua_State *L) {
   return dub::error(L);
 }
 
-/** LuaStackSize xml::Parser::parse(lua_State *L)
+/** LuaStackSize xml::Parser::load(lua_State *L)
  * include/xml/Parser.h:53
  */
-static int Parser_parse(lua_State *L) {
+static int Parser_load(lua_State *L) {
   try {
     Parser *self = *((Parser **)dub::checksdata(L, 1, "xml.Parser"));
-    return self->parse(L);
+    return self->load(L);
   } catch (std::exception &e) {
-    lua_pushfstring(L, "parse: %s", e.what());
+    lua_pushfstring(L, "load: %s", e.what());
   } catch (...) {
-    lua_pushfstring(L, "parse: Unknown exception");
+    lua_pushfstring(L, "load: Unknown exception");
   }
   return dub::error(L);
 }
@@ -85,9 +85,9 @@ static int Parser___tostring(lua_State *L) {
 static const struct luaL_Reg Parser_member_methods[] = {
   { "new"          , Parser_Parser        },
   { "__gc"         , Parser__Parser       },
-  { "parse"        , Parser_parse         },
+  { "load"         , Parser_load          },
   { "__tostring"   , Parser___tostring    },
-  { "deleted"      , dub::isDeleted        },
+  { "deleted"      , dub::isDeleted       },
   { NULL, NULL},
 };
 

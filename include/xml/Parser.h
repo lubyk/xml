@@ -50,7 +50,7 @@ public:
 
   // Receive an xml string and return a Lua table. The received string can be
   // modified in place.
-  LuaStackSize parse(lua_State *L);
+  LuaStackSize load(lua_State *L);
 private:
   Type type_;
 
