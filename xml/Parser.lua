@@ -1,18 +1,9 @@
 --[[------------------------------------------------------
-  # Very fast xml parser
-
-  The parser does not return information on comments, declarations,
-  doctypes and pi nodes. These are validly parsed but not returned.
-
-  This module is part of [lubyk](http://lubyk.org) project.  
-  Install with [luarocks](http://luarocks.org) or [luadist](http://luadist.org).
-
-    $ luarocks install xml
+  # Parser object
   
-  Dump a table to xml example:
-
-    local xml = require 'xml'
-    print(xml.dump(some_table))
+  The parser class is used to encapsulate parsing and settings in an object. When
+  using default settings, it is not necessary to create parser objects and
+  one can simply use [xml.load](xml.html#load).
 
 --]]------------------------------------------------------
 local core = require 'xml.core'
