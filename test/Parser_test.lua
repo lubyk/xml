@@ -48,7 +48,7 @@ end
 
 function should.renderToString()
   local p = xml.Parser(xml.Parser.TrimWhitespace)
-  assertMatch('xml.Parser: 0x%d', tostring(p))
+  assertMatch('xml.Parser: 0x', tostring(p))
 end
 
 function should.loadpath()
