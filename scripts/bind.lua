@@ -15,7 +15,7 @@ local dub = require 'dub'
 
 local ins = dub.Inspector {
   INPUT    = {
-    lub.path '|include/xml',
+    lub.path '|../include/xml',
   },
   --doc_dir = base .. '/tmp',
   --html = true,
@@ -25,9 +25,9 @@ local ins = dub.Inspector {
 local binder = dub.LuaBinder()
 
 binder:bind(ins, {
-  output_directory = lub.path '|src/bind',
+  output_directory = lub.path '|../src/bind',
   -- Remove this part in included headers
-  header_base = lub.path '|include',
+  header_base = lub.path '|../include',
   -- Create a single library.
   single_lib = 'xml',
   -- Open the library with require 'xml.core' (not 'xml')

@@ -16,7 +16,6 @@ int luaopen_xml_Parser(lua_State *L);
 }
 
 // --=============================================== FUNCTIONS
-// Functions from namespace xml
 static const struct luaL_Reg xml_functions[] = {
   { NULL, NULL},
 };
@@ -29,9 +28,9 @@ extern "C" int luaopen_xml_core(lua_State *L) {
   // <lib>
 
   luaopen_xml_Parser(L);
+  // <xml.Parser>
   lua_setfield(L, -2, "Parser");
-
-
+  
   // <lib>
   return 1;
 }

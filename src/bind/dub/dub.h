@@ -45,8 +45,8 @@ typedef int LuaStackSize;
 extern "C" {
 #endif
 // We need C linkage because lua lib is compiled as C code
-#include "lua.h"
-#include "lauxlib.h"
+#include <lua.h>
+#include <lauxlib.h>
 #ifdef __cplusplus
 }
 #endif
@@ -118,7 +118,7 @@ protected:
   DubUserdata *dub_userdata_;
 };
 
-/** This class creates a 'self' table on prepares a thread
+/** This class creates a 'self' table and prepares a thread
  * that can be used for callbacks from C++ to Lua.
  */
 class Thread : public Object {
@@ -328,7 +328,7 @@ void protect(lua_State *L, int owner, int original, const char *key);
 
 /** Prepare index function, setup 'type' field and __call metamethod.
  */
-void setup(lua_State *L, const char *libname, const char *class_name);
+void setup(lua_State *L, const char *class_name);
 
 // sdbm function: taken from http://www.cse.yorku.ca/~oz/hash.html
 // This version is slightly adapted to cope with different

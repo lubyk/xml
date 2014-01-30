@@ -49,8 +49,7 @@
 // Define the callback error function. We store the error function in
 // self._errfunc so that it can also be used from Lua (this error function
 // captures the currently global 'print' which is useful for remote network objects).
-#define DUB_ERRFUNC "local self = self\n\
-local print = print\n\
+#define DUB_ERRFUNC "local self, print = ...\n\
 local errfunc = function(...)\n\
   local err = self.error\n\
   if err then\n\
@@ -173,7 +172,7 @@ void Thread::dub_pushobject(lua_State *L, void *ptr, const char *tname, bool gc)
   // <self> <udata>
   
   //--=============================================== setup lua thread
-  // Create env table
+  // Create env table used for garbage collection protection.
   lua_newtable(L);
   // <self> <udata> <env>
   lua_pushvalue(L, -1);
@@ -187,6 +186,7 @@ void Thread::dub_pushobject(lua_State *L, void *ptr, const char *tname, bool gc)
   }
 #else
   lua_setuservalue(L, -3);
+  // <self> <udata> <env>
 #endif
 
   // <self> <udata> <env>
@@ -199,55 +199,36 @@ void Thread::dub_pushobject(lua_State *L, void *ptr, const char *tname, bool gc)
   // <self> <udata> <env>
 
   //--=============================================== prepare error function
-  lua_pushlstring(L, "self", 4);
-  lua_pushvalue(L, -4);
-  // <self> <udata> <env>.self = <self>
-  lua_rawset(L, -3);
-  // <self> <udata> <env>
-  lua_pushlstring(L, "print", 5);
-  // <self> <udata> <env> "print"
-#ifdef DUB_LUA_FIVE_ONE
-  lua_getfield(L, LUA_GLOBALSINDEX, "print");
-  // <self> <udata> <env> "print" (print)
-#else
-  lua_rawgeti(L, LUA_REGISTRYINDEX, LUA_RIDX_GLOBALS);
-  // <self> <udata> <env> "print" <_ENV>
-  lua_getfield(L, -1, "print");
-  // <self> <udata> <env> "print" <_ENV> (print)
-  lua_remove(L, -2);
-  // <self> <udata> <env> "print" (print)
-#endif
-  lua_rawset(L, -3);
-  // <self> <udata> <env>.print = <print>
-  // <self> <udata> <env>
   int error = luaL_loadbuffer(L, DUB_ERRFUNC, strlen(DUB_ERRFUNC), "Dub error function");
   if (error) {
     throw Exception("Error evaluating error function code (%s).", lua_tostring(L, -1));
   }
+  // <self> <udata> <env> (errloader)
+
+  lua_pushvalue(L, -4);
+  // <self> <udata> <env> (errloader) <self>
   
-  // <self> <udata> <env> <errloader>
-  lua_pushvalue(L, -2);
-  // <self> <udata> <env> <errloader> <env>
 #ifdef DUB_LUA_FIVE_ONE
-  if (!lua_setfenv(L, -2)) { // setfenv(errloader, env)
-    // <self> <udata> <env> <errloader>
-    lua_pop(L, 4);
-    // 
-    throw Exception("Could not set error function env on '%s'.", lua_typename(L, lua_type(L, -2)));
-  }
+  lua_getfield(L, LUA_GLOBALSINDEX, "print");
 #else
-  lua_setuservalue(L, -2);
+  lua_rawgeti(L, LUA_REGISTRYINDEX, LUA_RIDX_GLOBALS);
+  // <self> <udata> <env> <errloader> <self> <_G>
+  lua_getfield(L, -1, "print");
+  // <self> <udata> <env> (errloader) <self> <_G> (print)
+  lua_remove(L, -2);
 #endif
-  // <self> <udata> <env> <errloader>
-  error = lua_pcall(L, 0, 1, 0);
+
+  // <self> <udata> <env> (errloader) <self> (print)
+  
+  error = lua_pcall(L, 2, 1, 0);
   if (error) {
     throw Exception("Error executing error function code (%s).", lua_tostring(L, -1));
   }
   
-  // <self> <udata> <env> <errfunc>
 
   // <self> <udata> <env> <errfunc>
   lua_remove(L, -2);
+  // <self> <udata> <errfunc>
   lua_remove(L, -2);
   // <self> <errfunc>
 
@@ -259,6 +240,7 @@ void Thread::dub_pushobject(lua_State *L, void *ptr, const char *tname, bool gc)
   // <self> <errfunc> <self> <errfunc>
   lua_xmove(L, dub_L, 2);
   lua_pop(L, 1);
+
   // dub_L: <self> <errfunc>
   // L:     <self>
 }
@@ -340,10 +322,6 @@ inline void push_own_env(lua_State *L, int ud) {
 #ifdef DUB_LUA_FIVE_ONE
   lua_getfenv(L, ud);
   // ... <udata> ... <env>
-#else
-  lua_getuservalue(L, ud);
-  // ... <udata> ... <env>
-#endif
   lua_pushstring(L, ".");
   // ... <udata> ... <env> "."
   lua_rawget(L, -2); // <env>["."]
@@ -352,6 +330,13 @@ inline void push_own_env(lua_State *L, int ud) {
     // ... <udata> ... <env> <nil>
     // does not have it's own env table
     lua_pop(L, 2);
+    // ... <udata> ... 
+#else
+  lua_getuservalue(L, ud);
+  // ... <udata> ... <env/nil>
+  if (lua_isnil(L, -1)) {
+    lua_pop(L, 1);
+#endif
     // ... <udata> ... 
     // Create env table
     lua_newtable(L);
@@ -616,7 +601,7 @@ void **dub::checksdata_d(lua_State *L, int ud, const char *tname) throw(dub::Exc
 // =============================================== dub::setup
 // ======================================================================
 
-void dub::setup(lua_State *L, const char *libname, const char *type_name) {
+void dub::setup(lua_State *L, const char *type_name) {
   // meta-table should be on top
   // <mt>
   lua_getfield(L, -1, "__index");
@@ -630,17 +615,10 @@ void dub::setup(lua_State *L, const char *libname, const char *type_name) {
     lua_pop(L, 1);
   }
   // <mt>
-  lua_pushstring(L, "type");
-  // <mt> "type"
-  if (strcmp(libname, "_G")) {
-    // not in _G
-    lua_pushfstring(L, "%s.%s", libname, type_name);
-    // <mt>."type" = "libname.type_name"
-  } else {
-    lua_pushstring(L, type_name);
-    // <mt>."type" = "type_name"
-  }
-  lua_settable(L, -3);
+  lua_pushstring(L, type_name);
+  // <mt> "type_name"
+  // <mt>."type" = "type_name"
+  lua_setfield(L, -2, "type");
 
   // <mt>
 
