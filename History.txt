@@ -3,6 +3,7 @@
   * Changes in API to reflect yaml library. 'parse' is now 'load' and 'load'
     is 'loadpath'.
   * Fixed bindings by using latest dub binder (possible bug with Lua 5.2).
+  * Added support for CMake build.
 
 == 1.0.0 2014-01-26
 

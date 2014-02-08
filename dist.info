@@ -6,8 +6,7 @@ version = "1.1.0"
 desc = "Very fast xml parser based on RapidXML"
 author = "Gaspard Bucher"
 license = "MIT"
-url = "http://doc.lubyk.org/xml.html"
-maintainer = "Gaspard Bucher"
+url = "http://doc.lubyk.org/xmldef.description.author"
 
 depends = {
   "lua >= 5.1, < 5.3",

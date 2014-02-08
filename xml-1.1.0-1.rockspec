@@ -7,19 +7,20 @@ source = {
 description = {
   summary = "Very fast xml parser based on RapidXML",
   detailed = [[
-    This module is part of the Lubyk project.
+      This module is part of the Lubyk project.
 
-    Main features are:
-     - Fast and easy to use
-     - Complete documentation
-     - Based on proven code (RapidXML)
-     - Full test coverage
+      Main features are:
+       - Fast and easy to use
+       - Complete documentation
+       - Based on proven code (RapidXML)
+       - Full test coverage
 
-     Read the documentation at http://doc.lubyk.org/xml.html.
-  ]],
+      Read the documentation at http://doc.lubyk.org/xml.html.
+    ]],
   homepage = "http://doc.lubyk.org/xml.html",
   license = "MIT"
 }
+
 dependencies = {
   "lua >= 5.1, < 5.3",
   "lub >= 1.0.3, < 1.1",
@@ -33,13 +34,15 @@ build = {
     -- C++ modules
     ['xml.core'       ] = {
       sources = {
+        'src/Parser.cpp',
         'src/bind/dub/dub.cpp',
         'src/bind/xml_core.cpp',
         'src/bind/xml_Parser.cpp',
-        'src/Parser.cpp',
       },
-      incdirs = {'include', 'src/bind', 'src/vendor'},
+      incdirs   = {'include', 'src/bind', 'src/vendor'},
       libraries = {'stdc++'},
     },
   },
 }
+
+
