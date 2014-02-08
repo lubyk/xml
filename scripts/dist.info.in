@@ -7,7 +7,7 @@ desc = "{{def.description.summary}}"
 author = "{{def.description.author}}"
 license = "{{def.description.license}}"
 url = "http://doc.lubyk.org/{{lib.type}}.html"
-maintainer = "{{def.description.author"
+maintainer = "{{def.description.author}}"
 
 depends = {
 {% for _, v in ipairs(lib.DEPENDS) do %}
