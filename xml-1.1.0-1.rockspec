@@ -31,7 +31,7 @@ build = {
     -- Plain Lua files
     ['xml'            ] = 'xml/init.lua',
     ['xml.Parser'     ] = 'xml/Parser.lua',
-    -- C++ modules
+    -- C module
     ['xml.core'       ] = {
       sources = {
         'src/Parser.cpp',

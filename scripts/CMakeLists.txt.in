@@ -11,25 +11,26 @@ set(INSTALL_PATH "${CMAKE_BINARY_DIR}/lib" CACHE STRING "Install directory path"
 
 set(LINK_LIBS {{ lub.join(def.libraries or {}, ' ') }})
 
+{% local platlibs = def.platlibs or {} %}
 if(UNIX)
   if(APPLE)
     set(PLAT "macosx")
     set(LINK_FLAGS "-bundle -undefined dynamic_lookup -all_load")
-{% if def.platlibs.macosx then %}
-    set(LINK_LIBS {{ lub.join(def.platlibs.macosx, ' ') }})
+{% if platlibs.macosx then %}
+    set(LINK_LIBS {{ lub.join(platlibs.macosx, ' ') }})
 {% end %}
   else(APPLE)
     set(PLAT "linux")
     set(LINK_FLAGS "-shared")
-{% if def.platlibs.linux then %}
-    set(LINK_LIBS {{ lub.join(def.platlibs.linux, ' ') }})
+{% if platlibs.linux then %}
+    set(LINK_LIBS {{ lub.join(platlibs.linux, ' ') }})
 {% end %}
   endif(APPLE)
 else(UNIX)
   if(WIN32)
     set(PLAT "win32")
-{% if def.platlibs.win32 then %}
-    set(LINK_LIBS {{ lub.join(def.platlibs.win32, ' ') }})
+{% if platlibs.win32 then %}
+    set(LINK_LIBS {{ lub.join(platlibs.win32, ' ') }})
 {% end %}
   else(WIN32)
     set(PLAT "unsupported")
@@ -47,6 +48,7 @@ endif(RELEASE)
 # --------------------------------------------------------------
 add_custom_target(${MODULE_NAME} true)
 
+{% if not def.pure_lua then %}
 # --------------------------------------------------------------
 #  {{lib.type}}.core
 # --------------------------------------------------------------
@@ -54,7 +56,7 @@ set(core "${MODULE_NAME}_core")
 
 include_directories({{ lub.join(def.includes, ' ') }})
 
-file(GLOB CORE_SOURCES src/bind/dub/*.cpp src/bind/*.cpp src/*.cpp
+file(GLOB CORE_SOURCES src/*.c src/bind/dub/*.cpp src/bind/*.cpp src/*.cpp
   src/${PLAT}/*.cpp src/${PLAT}/*.mm)
 
 add_library(${core} MODULE ${CORE_SOURCES})
@@ -77,9 +79,10 @@ install(TARGETS ${core}
   DESTINATION ${INSTALL_PATH}/${MODULE_NAME}
 )
 
+{% end %}
 # --------------------------------------------------------------
 #  install                                     
 # --------------------------------------------------------------
 install(DIRECTORY ${MODULE_NAME}
-  DESTINATION ${INSTALL_PATH}/${MODULE_NAME}
+  DESTINATION ${INSTALL_PATH}
 )
