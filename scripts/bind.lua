@@ -1,15 +1,6 @@
---[[------------------------------------------------------
-
-  xml bindings generator
-  ------------------------
-
-  This uses the 'dub' tool and Doxygen to generate the
-  bindings for mimas.
-
-  Input:  headers in 'include/xml'
-  Output: cpp files in 'src/core'
-
---]]------------------------------------------------------
+--
+-- Update binding files for this project
+--
 local lub = require 'lub'
 local dub = require 'dub'
 

@@ -32,13 +32,39 @@ local parser  = lib.Parser()
 
 
 -- Current version respecting [semantic versioning](http://semver.org).
-lib.VERSION = '1.1.0'
+lib.VERSION = '1.1.1'
 
 lib.DEPENDS = { -- doc
   -- Compatible with Lua 5.1, 5.2 and LuaJIT
   'lua >= 5.1, < 5.3',
   -- Uses [Lubyk base library](http://doc.lubyk.org/lub.html)
-  'lub >= 1.0.3, < 1.1',
+  'lub >= 1.0.3, < 2',
+}
+
+-- nodoc
+lib.DESCRIPTION = {
+  summary = "Very fast xml parser based on RapidXML",
+  detailed = [[
+    This module is part of the Lubyk project.
+
+    Main features are:
+     - Fast and easy to use
+     - Complete documentation
+     - Based on proven code (RapidXML)
+     - Full test coverage
+
+    Read the documentation at http://doc.lubyk.org/xml.html.
+  ]],
+  homepage = "http://doc.lubyk.org/"..lib.type..".html",
+  author   = "Gaspard Bucher",
+  license  = "MIT",
+}
+
+-- nodoc
+lib.BUILD = {
+  github    = 'lubyk',
+  includes  = {'include', 'src/bind', 'src/vendor'},
+  libraries = {'stdc++'},
 }
 
 --[[

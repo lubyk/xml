@@ -1,7 +1,5 @@
---- This file is part of Lubyk project
-
 name = "xml"
-version = "1.1.0"
+version = "1.1.1"
 
 desc = "Very fast xml parser based on RapidXML"
 author = "Gaspard Bucher"
@@ -11,5 +9,6 @@ maintainer = "Gaspard Bucher"
 
 depends = {
   "lua >= 5.1, < 5.3",
-  "lub >= 1.0.3, < 1.1",
+  "lub >= 1.0.3, < 2",
 }
+
