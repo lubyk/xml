@@ -40,8 +40,16 @@ build = {
         'src/bind/xml_core.cpp',
       },
       incdirs   = {'include', 'src/bind', 'src/vendor'},
-      libraries = {'stdc++'},
     },
   },
+  -- Override default build options
+  platforms = {
+    unix = { -- for all unix system like linux, macos, bsd, cygwin...
+      modules = {
+        ['xml.core'] = {
+          libraries = {'stdc++'}
+        }
+      }
+    }
+  }
 }
-
