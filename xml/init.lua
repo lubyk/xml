@@ -32,7 +32,7 @@ local parser  = lib.Parser()
 
 
 -- Current version respecting [semantic versioning](http://semver.org).
-lib.VERSION = '1.1.1'
+lib.VERSION = '1.1.2'
 
 lib.DEPENDS = { -- doc
   -- Compatible with Lua 5.1, 5.2 and LuaJIT
@@ -64,7 +64,15 @@ lib.DESCRIPTION = {
 lib.BUILD = {
   github    = 'lubyk',
   includes  = {'include', 'src/bind', 'src/vendor'},
-  libraries = {'stdc++'},
+  platlibs = {
+    linux  = {'stdc++'},
+    macosx = {'stdc++'},
+  },
+  -- FIXME: Implement platform flags for lut.Builder and see how it works with
+  -- luarocks /EHsc is needed for exception handling.
+  platflags = {
+    win32 = {'EHsc'},
+  },
 }
 
 --[[

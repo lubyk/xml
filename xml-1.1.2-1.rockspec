@@ -1,8 +1,9 @@
 package = "xml"
-version = "1.1.1-1"
+version = "1.1.2-1"
 source = {
-  url = 'https://github.com/lubyk/xml/archive/REL-1.1.1.tar.gz',
-  dir = 'xml-REL-1.1.1',
+  url = 'git://github.com/lubyk/xml',
+  tag = 'REL-1.1.2',
+  dir = 'xml',
 }
 description = {
   summary = "Very fast xml parser based on RapidXML",
@@ -40,7 +41,27 @@ build = {
         'src/bind/xml_core.cpp',
       },
       incdirs   = {'include', 'src/bind', 'src/vendor'},
-      libraries = {'stdc++'},
+    },
+  },
+  platforms = {
+    linux = {
+      modules = {
+        ['xml.core'] = {
+          sources = {
+          },
+          libraries = {'stdc++'},
+        },
+      },
+    },
+    macosx = {
+      modules = {
+        ['xml.core'] = {
+          sources = {
+          },
+          libraries = {'stdc++'},
+        },
+      },
     },
   },
 }
+
