@@ -9,3 +9,8 @@ install
 -------
 
     luarocks install xml
+
+install on Windows
+------------------
+
+    luarocks install xml  CC=g++ LD=g++
