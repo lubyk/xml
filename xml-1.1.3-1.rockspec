@@ -1,8 +1,8 @@
 package = "xml"
-version = "1.1.2-1"
+version = "1.1.3-1"
 source = {
   url = 'git://github.com/lubyk/xml',
-  tag = 'REL-1.1.2',
+  tag = 'REL-1.1.3',
   dir = 'xml',
 }
 description = {
@@ -23,7 +23,7 @@ description = {
 }
 
 dependencies = {
-  "lua >= 5.1, < 5.3",
+  "lua >= 5.1, < 5.4",
   "lub >= 1.0.3, < 2",
 }
 build = {

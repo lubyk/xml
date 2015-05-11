@@ -414,17 +414,33 @@ void dub::pushudata(lua_State *L, const void *cptr, const char *tname, bool gc) 
 // Copyright (C) 1994-2008 Lua.org, PUC-Rio.
 
 lua_Number dub::checknumber(lua_State *L, int narg) throw(TypeException) {
+#ifdef DUB_LUA_FIVE_ONE
   lua_Number d = lua_tonumber(L, narg);
   if (d == 0 && !lua_isnumber(L, narg))  /* avoid extra test when d is not 0 */
     throw TypeException(L, narg, lua_typename(L, LUA_TNUMBER));
   return d;
+#else
+  int isnum = 0;
+  lua_Number d = lua_tonumberx(L, narg, &isnum);
+  if (!isnum)
+    throw TypeException(L, narg, lua_typename(L, LUA_TNUMBER));
+  return d;
+#endif
 }
 
-lua_Integer dub::checkint(lua_State *L, int narg) throw(TypeException) {
+lua_Integer dub::checkinteger(lua_State *L, int narg) throw(TypeException) {
+#ifdef DUB_LUA_FIVE_ONE
   lua_Integer d = lua_tointeger(L, narg);
   if (d == 0 && !lua_isnumber(L, narg))  /* avoid extra test when d is not 0 */
     throw TypeException(L, narg, lua_typename(L, LUA_TNUMBER));
   return d;
+#else
+  int isnum = 0;
+  lua_Integer d = lua_tointegerx(L, narg, &isnum);
+  if (!isnum)
+    throw TypeException(L, narg, lua_typename(L, LUA_TNUMBER));
+  return d;
+#endif
 }
 
 const char *dub::checklstring(lua_State *L, int narg, size_t *len) throw(TypeException) {
@@ -661,6 +677,7 @@ int dub::hash(const char *str, int sz) {
   int c;
 
   while ( (c = *str++) ) {
+    // FIXME: integer constant is too large for 'long' type
     unsigned int h1 = (h << 6)  % DUB_MAX_IN_SHIFT;
     unsigned int h2 = (h << 16) % DUB_MAX_IN_SHIFT;
     h = c + h1 + h2 - h;

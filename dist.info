@@ -8,7 +8,7 @@ url = "http://doc.lubyk.org/xml.html"
 maintainer = "Gaspard Bucher"
 
 depends = {
-  "lua >= 5.1, < 5.3",
+  "lua >= 5.1, < 5.4",
   "lub >= 1.0.3, < 2",
 }
 

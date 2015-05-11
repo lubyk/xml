@@ -6,10 +6,12 @@
   ...
 
 --]]------------------------------------------------------
+package.path  = './?.lua;'..package.path
+package.cpath = './?.so;' ..package.cpath
+
 local lub    = require 'lub'
 local lut    = require 'lut'
 local xml    = require 'xml'
-
 local should = lut.Test('xml.Parser')
 
 should.ignore.deleted = true

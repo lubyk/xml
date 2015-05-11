@@ -35,8 +35,8 @@ local parser  = lib.Parser()
 lib.VERSION = '1.1.2'
 
 lib.DEPENDS = { -- doc
-  -- Compatible with Lua 5.1, 5.2 and LuaJIT
-  'lua >= 5.1, < 5.3',
+  -- Compatible with Lua 5.1 to 5.3 and LuaJIT
+  'lua >= 5.1, < 5.4',
   -- Uses [Lubyk base library](http://doc.lubyk.org/lub.html)
   'lub >= 1.0.3, < 2',
 }
