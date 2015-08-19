@@ -7,7 +7,7 @@
 
 --]]------------------------------------------------------
 local core = require 'xml.core'
-local lub  = require 'lub'
+local lub  = require 'xml.lubsubset'
 local lib  = core.Parser
 
 -- ## Parser types
