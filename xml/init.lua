@@ -169,6 +169,7 @@ local function doDump(data, indent, output, last, depth, max_depth)
         last = 'n'
       elseif typ == 'number' then
         insert(output, tostring(child))
+        last = 's'
       else
         local s = escape(child)
         insert(output, s)
