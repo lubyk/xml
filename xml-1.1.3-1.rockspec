@@ -44,6 +44,15 @@ build = {
     },
   },
   platforms = {
+    freebsd = {
+      modules = {
+        ['xml.core'] = {
+          sources = {
+          },
+          libraries = {'c++'},
+        },
+      },
+    },
     linux = {
       modules = {
         ['xml.core'] = {
