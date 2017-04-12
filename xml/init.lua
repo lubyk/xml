@@ -1,35 +1,18 @@
 --[[------------------------------------------------------
-  # Very fast xml parser for Lua <a href="https://travis-ci.org/lubyk/xml"><img src="https://travis-ci.org/lubyk/xml.png" alt="Build Status"></a> 
 
-  This parser uses [RapidXML](http://rapidxml.sourceforge.net/) to parse XML
-  content.
-
-  <html><a href="https://github.com/lubyk/xml"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a></html>
-
-  *MIT license* &copy Marcin Kalicinski 2006, 2009, Gaspard Bucher 2014.
-
-  ## Installation
-  
-  With [luarocks](http://luarocks.org):
-
-    $ luarocks install xml
-  
-  ## Usage example
-
-    local data = xml.load(some_xml)
-
-    local xml_string = xml.dump(some_table)
+  This is a fork of the lubyk XML module. Since the module depends
+  only on a few functions of the lub module, these are imported here
+  to avoid installing more dependencies
 
 --]]-----------------------------------------------------
-local lub     = require 'lub'
-local lib     = lub.Autoload 'xml'
+local lub     = require 'xml.lubsubset'
+local lib     = {}
 local ipairs, pairs, insert, type,
       match, tostring =
       ipairs, pairs, table.insert, type,
       string.match, tostring
 
-local parser  = lib.Parser()
-
+local parser  = require 'xml.Parser'
 
 -- Current version respecting [semantic versioning](http://semver.org).
 lib.VERSION = '1.1.2'
@@ -37,8 +20,6 @@ lib.VERSION = '1.1.2'
 lib.DEPENDS = { -- doc
   -- Compatible with Lua 5.1 to 5.3 and LuaJIT
   'lua >= 5.1, < 5.4',
-  -- Uses [Lubyk base library](http://doc.lubyk.org/lub.html)
-  'lub >= 1.0.3, < 2',
 }
 
 -- nodoc
@@ -55,7 +36,7 @@ lib.DESCRIPTION = {
 
     Read the documentation at http://doc.lubyk.org/xml.html.
   ]],
-  homepage = "http://doc.lubyk.org/"..lib.type..".html",
+  homepage = "http://doc.lubyk.org/",
   author   = "Gaspard Bucher",
   license  = "MIT",
 }
@@ -169,6 +150,7 @@ local function doDump(data, indent, output, last, depth, max_depth)
         last = 'n'
       elseif typ == 'number' then
         insert(output, tostring(child))
+        last = 's'
       else
         local s = escape(child)
         insert(output, s)
