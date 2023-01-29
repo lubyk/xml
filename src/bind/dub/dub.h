@@ -295,16 +295,16 @@ void register_const(lua_State *L, const const_Reg *l);
 
 // These provide the same funcionality as their equivalent luaL_check... but they
 // throw std::exception which can be caught (eventually to call lua_error).
-lua_Number checknumber(lua_State *L, int narg) throw(dub::TypeException);
-lua_Integer checkinteger(lua_State *L, int narg) throw(dub::TypeException);
-const char *checklstring(lua_State *L, int narg, size_t *len) throw(dub::TypeException);
-void **checkudata(lua_State *L, int ud, const char *tname, bool keep_mt = false) throw(dub::Exception);
+lua_Number checknumber(lua_State *L, int narg) noexcept(false);
+lua_Integer checkinteger(lua_State *L, int narg) noexcept(false);
+const char *checklstring(lua_State *L, int narg, size_t *len) noexcept(false);
+void **checkudata(lua_State *L, int ud, const char *tname, bool keep_mt = false) noexcept(false);
 
 // Super aware userdata calls (finds userdata inside provided table with table.super).
-void **checksdata(lua_State *L, int ud, const char *tname, bool keep_mt = false) throw(dub::Exception);
+void **checksdata(lua_State *L, int ud, const char *tname, bool keep_mt = false) noexcept(false);
 // Super aware userdata calls that DOES NOT check for dangling pointers (used in 
 // __gc binding).
-void **checksdata_d(lua_State *L, int ud, const char *tname) throw(dub::Exception);
+void **checksdata_d(lua_State *L, int ud, const char *tname) noexcept(false);
 // Return pointer if the type is correct. Used to resolve overloaded functions when there
 // is no other alternative (arg count, native types). We return the pointer so that we can
 // optimize away the corresponding 'dub_checksdata'.
@@ -314,11 +314,11 @@ void **issdata(lua_State *L, int ud, const char *tname, int type);
 // implementations for luaL_error (luajit throws an exception on luaL_error).
 void **checksdata_n(lua_State *L, int ud, const char *tname, bool keep_mt = false);
 
-inline const char *checkstring(lua_State *L, int narg) throw(dub::TypeException) {
+inline const char *checkstring(lua_State *L, int narg) noexcept(false) {
   return checklstring(L, narg, NULL);
 }
 
-inline int checkboolean(lua_State *L, int narg) throw() {
+inline int checkboolean(lua_State *L, int narg) noexcept {
   return lua_toboolean(L, narg);
 }
 
