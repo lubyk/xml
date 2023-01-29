@@ -413,7 +413,7 @@ void dub::pushudata(lua_State *L, const void *cptr, const char *tname, bool gc) 
 // These methods are slight adaptations from luaxlib.c
 // Copyright (C) 1994-2008 Lua.org, PUC-Rio.
 
-lua_Number dub::checknumber(lua_State *L, int narg) throw(TypeException) {
+lua_Number dub::checknumber(lua_State *L, int narg) noexcept(false) {
 #ifdef DUB_LUA_FIVE_ONE
   lua_Number d = lua_tonumber(L, narg);
   if (d == 0 && !lua_isnumber(L, narg))  /* avoid extra test when d is not 0 */
@@ -428,7 +428,7 @@ lua_Number dub::checknumber(lua_State *L, int narg) throw(TypeException) {
 #endif
 }
 
-lua_Integer dub::checkinteger(lua_State *L, int narg) throw(TypeException) {
+lua_Integer dub::checkinteger(lua_State *L, int narg) noexcept(false) {
 #ifdef DUB_LUA_FIVE_ONE
   lua_Integer d = lua_tointeger(L, narg);
   if (d == 0 && !lua_isnumber(L, narg))  /* avoid extra test when d is not 0 */
@@ -443,13 +443,13 @@ lua_Integer dub::checkinteger(lua_State *L, int narg) throw(TypeException) {
 #endif
 }
 
-const char *dub::checklstring(lua_State *L, int narg, size_t *len) throw(TypeException) {
+const char *dub::checklstring(lua_State *L, int narg, size_t *len) noexcept(false) {
   const char *s = lua_tolstring(L, narg, len);
   if (!s) throw TypeException(L, narg, lua_typename(L, LUA_TSTRING));
   return s;
 }
 
-void **dub::checkudata(lua_State *L, int ud, const char *tname, bool keep_mt) throw(dub::Exception) {
+void **dub::checkudata(lua_State *L, int ud, const char *tname, bool keep_mt) noexcept(false) {
   void **p = (void**)lua_touserdata(L, ud);
   if (p != NULL) {  /* value is a userdata? */
     if (lua_getmetatable(L, ud)) {  /* does it have a metatable? */
@@ -500,7 +500,7 @@ static inline void **dub_cast_ud(lua_State *L, int ud, const char *tname) {
   return NULL;
 }
 
-static inline void **getsdata(lua_State *L, int ud, const char *tname, bool keep_mt) throw() {
+static inline void **getsdata(lua_State *L, int ud, const char *tname, bool keep_mt) noexcept(false) {
   void **p = (void**)lua_touserdata(L, ud);
   if (p != NULL) {  /* value is a userdata? */
     if (lua_getmetatable(L, ud)) {  /* does it have a metatable? */
@@ -593,7 +593,7 @@ void **dub::issdata(lua_State *L, int ud, const char *tname, int type) {
   }
 }
 
-void **dub::checksdata(lua_State *L, int ud, const char *tname, bool keep_mt) throw(dub::Exception) {
+void **dub::checksdata(lua_State *L, int ud, const char *tname, bool keep_mt) noexcept(false) {
   void **p = getsdata(L, ud, tname, keep_mt);
   if (!p) {
     throw dub::TypeException(L, ud, tname);
@@ -604,7 +604,7 @@ void **dub::checksdata(lua_State *L, int ud, const char *tname, bool keep_mt) th
   return p;
 }
 
-void **dub::checksdata_d(lua_State *L, int ud, const char *tname) throw(dub::Exception) {
+void **dub::checksdata_d(lua_State *L, int ud, const char *tname) noexcept(false) {
   void **p = getsdata(L, ud, tname, false);
   if (!p) {
     throw dub::TypeException(L, ud, tname);
